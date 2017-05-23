@@ -15,13 +15,17 @@ public class IntToEng {
 
 	}
 	static String translateEng(int n) {
+		
 		int[]num=new int[6];
-		int j=n/100000;
-		int m=(n-j*100000)/10000;
-		int s=(n-100000*j-m*10000)/1000;
-		int h=(n-100000*j-m*10000-s*1000)/100;
-		int z=(n-100000*j-m*10000-s*1000-h*100)/10;
-		int i=(n-100000*j-m*10000-s*1000-h*100-z*10);
+		if(n==0)return "zero";
+		int sum=0;
+		int b=100000;
+		for(int i=0; i<num.length;i++){
+			num[i]=(n-sum)/b;
+			b/=10;
+			
+		}
+		
 		//System.out.println(m+","+s);
 		//6桁の場合
 		if(j!=0){
