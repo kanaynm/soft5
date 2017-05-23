@@ -22,6 +22,7 @@ public class IntToEng {
 		int b=100000;
 		for(int i=0; i<num.length;i++){
 			num[i]=(n-sum)/b;
+			sum+=num[i]*b;
 			b/=10;
 			
 		}
@@ -67,14 +68,14 @@ public class IntToEng {
 	static String judge10(int i,int j){
 		String s="";
 		if(i==1)return judgeteen(j);
-		else if(i==2)return "twenty";
-		else if(i==3)return "thirty";
-		else if(i==4)return "fourty";
-		else if(i==5)return "fifty";
-		else if(i==6)return "sixty";
-		else if(i==7)return "seventy";
-		else if(i==8)return "eightty";
-		else if(i==9)return "ninety";
+		else if(i==2)s="twenty";
+		else if(i==3)s="thirty";
+		else if(i==4)s="fourty";
+		else if(i==5)s="fifty";
+		else if(i==6)s="sixty";
+		else if(i==7)s="seventy";
+		else if(i==8)s="eightty";
+		else if(i==9)s="ninety";
 		s+=" "+judge1(j);
 		return s;
 	}
