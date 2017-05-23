@@ -25,29 +25,33 @@ public class IntToEng {
 			b/=10;
 			
 		}
-		
-		//System.out.println(m+","+s);
-		//6桁の場合
-		if(j!=0){
-			if(z!=1&&m==1)return (judge1(j)+" hundred "+judgeteen(s)+" thousand "+judge1(h)+" hundred "+judge10(z)+" "+judge1(i));
+		int k=ketasuu(num);
+		int[]a=new int[3];
+		String s="";
+		if(3<k&&k<7){
+		    for(int i=0;i<3;i++)a[i]=num[i];//0,1,2
+		    s=sanketa(a)+" thousand ";
+		    for(int i=0;i<3;i++)a[i]=num[3+i];//3,4,5
+		    s+=sanketa(a);
 		}
-		if(n==0){
-			if(z==1)return "zero";
+		if(0<k&&k<4){
+		    for(int i=0;i<3;i++)a[i]=num[3+i];//3,4,5
+		    s=sanketa(a);
 		}
-		if(h==0){
-			if(z==1)
-				return (judgeteen(i));
-			else
-				return (judge10(z)+" "+judge1(i));
-		}
-		if(z==1){
-		return (judge1(h)+" hundred "+judgeteen(i));
-		} else {
-		return (judge1(h)+" hundred "+judge10(z)+" "+judge1(i));
-		}
+		return s;		
 		
     }
-	//static int ketasuu(int )
+	static String sanketa(int[]a){
+		String s="";
+		if(a[0]!=0)s=judge1(a[0])+" hundred ";
+		return s+judge10(a[1],a[2]);
+	}
+	static int ketasuu(int[]a){//0以外
+		for(int i=1;i<a.length;i++){
+		    if(a[i-1]==0&&a[i]!=0)return a.length-i;
+		}
+		return a.length;
+	}
 	static String judge1(int i){
 		if(i==1)return "one";
 		else if(i==2)return "two";
@@ -60,8 +64,10 @@ public class IntToEng {
 		else if(i==9)return "nine";
 		return "";
 	}
-	static String judge10(int i){
-		if(i==2)return "twenty";
+	static String judge10(int i,int j){
+		String s="";
+		if(i==1)return judgeteen(j);
+		else if(i==2)return "twenty";
 		else if(i==3)return "thirty";
 		else if(i==4)return "fourty";
 		else if(i==5)return "fifty";
@@ -69,7 +75,8 @@ public class IntToEng {
 		else if(i==7)return "seventy";
 		else if(i==8)return "eightty";
 		else if(i==9)return "ninety";
-		return "";
+		s+=" "+judge1(j);
+		return s;
 	}
 	static String judgeteen(int i){
 		if(i==1)return "eleven";
